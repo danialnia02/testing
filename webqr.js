@@ -38,9 +38,9 @@ function drop(e) {
     if (files.length > 0) {
         handleFiles(files);
     } else
-    if (dt.getData('URL')) {
-        qrcode.decode(dt.getData('URL'));
-    }
+        if (dt.getData('URL')) {
+            qrcode.decode(dt.getData('URL'));
+        }
 }
 
 function handleFiles(f) {
@@ -48,8 +48,8 @@ function handleFiles(f) {
 
     for (var i = 0; i < f.length; i++) {
         var reader = new FileReader();
-        reader.onload = (function(theFile) {
-            return function(e) {
+        reader.onload = (function (theFile) {
+            return function (e) {
                 gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 
                 qrcode.decode(e.target.result);
@@ -97,8 +97,9 @@ function read(a) {
     var html = "<br>";
     if (a.indexOf("http://") === 0 || a.indexOf("https://") === 0)
         html += "<a target='_blank' href='" + a + "'>" + a + "</a><br>";
-        //the result is here
-    html += "<b>" + htmlEntities(a) + "</b><br><br>";
+    //the result is here
+    result = htmlEntities(a);
+    html += "<b>" + result + "</b><br><br>";
     document.getElementById("result").innerHTML = html;
 }
 
@@ -140,34 +141,39 @@ function setwebcam() {
     var options = true;
     if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
         try {
+            var cameras = [];
             navigator.mediaDevices.enumerateDevices()
-                .then(function(devices) {
-                    devices.forEach(function(device) {
+                .then(function (devices) {
+                    devices.forEach(function (device) {
                         if (device.kind === 'videoinput') {
-                            if (device.label.toLowerCase().search("back") > -1)
+                            if (device.label.toLowerCase().search("back") > -1) {
                                 options = {
                                     'deviceId': {
                                         'exact': device.deviceId
                                     },
                                     'facingMode': 'environment'
                                 };
+                                cameras.push(options);
+                            }
+
                         }
                         console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
                     });
+                    console.log(cameras)
                     setwebcam2(options);
                 });
         } catch (e) {
             console.log(e);
         }
     } else {
-        console.log("no navigator.mediaDevices.enumerateDevices");
+        // console.log("no navigator.mediaDevices.enumerateDevices");
         setwebcam2(options);
     }
 
 }
 
 function setwebcam2(options) {
-    console.log(options);
+    // console.log(options);
     document.getElementById("result").innerHTML = "- scanning -";
     if (stype == 1) {
         setTimeout(captureToCanvas, 500);
@@ -183,26 +189,26 @@ function setwebcam2(options) {
             video: options,
             audio: false
         }).
-        then(function(stream) {
-            success(stream);
-        }).catch(function(error) {
-            error(error)
-        });
+            then(function (stream) {
+                success(stream);
+            }).catch(function (error) {
+                error(error)
+            });
     } else
-    if (n.getUserMedia) {
-        webkit = true;
-        n.getUserMedia({
-            video: options,
-            audio: false
-        }, success, error);
-    } else
-    if (n.webkitGetUserMedia) {
-        webkit = true;
-        n.webkitGetUserMedia({
-            video: options,
-            audio: false
-        }, success, error);
-    }
+        if (n.getUserMedia) {
+            webkit = true;
+            n.getUserMedia({
+                video: options,
+                audio: false
+            }, success, error);
+        } else
+            if (n.webkitGetUserMedia) {
+                webkit = true;
+                n.webkitGetUserMedia({
+                    video: options,
+                    audio: false
+                }, success, error);
+            }
 
     document.getElementById("qrimg").style.opacity = 0.2;
     document.getElementById("webcamimg").style.opacity = 1.0;

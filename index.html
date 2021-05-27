@@ -127,7 +127,7 @@
     <script type="text/javascript" src="plusone.js"></script>
     <script type="text/javascript" src="webqr.js"></script>
 
- 
+
 
 </head>
 
@@ -143,6 +143,7 @@
             <ul>
                 <li><a href="index.html">Scan</a></li>
                 <li><a href="create.html">Create</a></li>
+                <li id="dropdown"></li>
             </ul>
         </div>
         <div id="mainbody">
@@ -151,8 +152,10 @@
                     <td valign="top" align="center" width="50%">
                         <table class="tsel" border="0">
                             <tr>
-                                <td><img class="selector" id="webcamimg" src="vid.png" onclick="setwebcam()" align="left" /></td>
-                                <td><img class="selector" id="qrimg" src="cam.png" onclick="setimg()" align="right" /></td>
+                                <td><img class="selector" id="webcamimg" src="vid.png" onclick="setwebcam()"
+                                        align="left" /></td>
+                                <td><img class="selector" id="qrimg" src="cam.png" onclick="setimg()" align="right" />
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center">
@@ -174,9 +177,9 @@
                     </td>
                 </tr>
             </table>
-            
+
         </div>&nbsp;
-     
+
     </div>
     <canvas id="qr-canvas" width="800" height="600"></canvas>
     <script type="text/javascript">
