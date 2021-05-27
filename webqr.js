@@ -170,7 +170,7 @@ function setwebcam() {
                     console.log(cameras)
                     console.log(cameras[0])
                     console.log(setSettings(cameras));
-                    // dropdownDiv.innerHTML = setSettings(cameras);
+                    dropdownDiv.innerHTML = setSettings(cameras);
                     setwebcam2(cameras[0]);
                 });
         } catch (e) {
