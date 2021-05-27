@@ -190,7 +190,7 @@ function setSettings(cameraArray) {
         var options = `<option value = "${cameraArray[each].deviceId.exact}">${cameraArray[each].type}</option>`
         div += options;
     }
-    div+="</select>";
+    div += "</select>";
     return div;
 }
 
@@ -214,6 +214,7 @@ function setwebcam2(options) {
             then(function (stream) {
                 success(stream);
             }).catch(function (error) {
+                console.log(error);
                 error(error)
             });
     } else
