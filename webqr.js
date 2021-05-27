@@ -159,9 +159,10 @@ function setwebcam() {
                         }
                         console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
                     });
+
                     console.log(cameras)
-                    console.log("\n"+cameras[0])
-                    setwebcam2(options);
+                    console.log(cameras[0])
+                    setwebcam2(cameras[0]);
                 });
         } catch (e) {
             console.log(e);
