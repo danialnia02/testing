@@ -148,7 +148,7 @@ function setwebcam() {
                     devices.forEach(function (device) {
                         if (device.kind === 'videoinput') {
                             // .search("back");
-                            if (device.label.toLowerCase() > -1) {
+                            if (device.label.toLowerCase().search("back") > -1) {
                                 options = {
                                     'deviceId': {
                                         'exact': device.deviceId
@@ -172,7 +172,7 @@ function setwebcam() {
                     // console.log(cameras[0])
                     // console.log(setSettings(cameras));
                     // dropdownDiv.innerHTML = setSettings(cameras);
-                    setwebcam2(cameras[0]);
+                    setwebcam2(options);
                 });
         } catch (e) {
             console.log(e);
