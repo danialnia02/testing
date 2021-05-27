@@ -187,7 +187,7 @@ function setSettings(cameraArray) {
     var div = "";
 
     for (let each in cameraArray) {
-        var options = `<option> value = "${cameraArray[each].device.exact}">${cameraArray[each].type}</option>`
+        var options = `<option> value = "${cameraArray[each].deviceId.exact}">${cameraArray[each].type}</option>`
         div += options;
     }
     return div;
