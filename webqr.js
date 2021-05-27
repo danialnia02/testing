@@ -215,7 +215,6 @@ function setwebcam2(options) {
             then(function (stream) {
                 success(stream);
             }).catch(function (error) {
-                console.log(error);
                 error(error)
             });
     } else
