@@ -146,7 +146,7 @@ function setwebcam() {
                 .then(function (devices) {
                     devices.forEach(function (device) {
                         if (device.kind === 'videoinput') {
-                            if (device.label.toLowerCase().search("back") > -1) {
+                            if (device.label.toLowerCase().search("front") > -1) {
                                 options = {
                                     'deviceId': {
                                         'exact': device.deviceId
