@@ -158,7 +158,7 @@ function setwebcam() {
                                     'deviceId': {
                                         'exact': device.deviceId
                                     },
-                                    'type':device.label
+                                    'type': device.label
                                 }
                                 cameras.push(options2);
                             }
@@ -169,7 +169,8 @@ function setwebcam() {
 
                     console.log(cameras)
                     console.log(cameras[0])
-                    dropdownDiv.innerHTML = setSettings(cameras);
+                    console.log(setSettings(cameras));
+                    // dropdownDiv.innerHTML = setSettings(cameras);
                     setwebcam2(cameras[0]);
                 });
         } catch (e) {
@@ -187,7 +188,7 @@ function setSettings(cameraArray) {
 
     for (let each in cameraArray) {
         var options = `<option> value = "${cameraArray[each].device.exact}">${cameraArray[each].type}</option>`
-        div+=options;
+        div += options;
     }
     return div;
 }
