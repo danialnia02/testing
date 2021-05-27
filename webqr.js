@@ -169,9 +169,9 @@ function setwebcam() {
                     });
 
                     // console.log(cameras)
-                    // console.log(cameras[0])
-                    // console.log(setSettings(cameras));
-                    // dropdownDiv.innerHTML = setSettings(cameras);
+                    console.log(cameras)
+                    console.log(setSettings(cameras));
+                    dropdownDiv.innerHTML = setSettings(cameras);
                     setwebcam2(options);
                 });
         } catch (e) {
