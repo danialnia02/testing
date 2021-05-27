@@ -168,10 +168,10 @@ function setwebcam() {
                         console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
                     });
 
-                    console.log(cameras)
-                    console.log(cameras[0])
-                    console.log(setSettings(cameras));
-                    dropdownDiv.innerHTML = setSettings(cameras);
+                    // console.log(cameras)
+                    // console.log(cameras[0])
+                    // console.log(setSettings(cameras));
+                    // dropdownDiv.innerHTML = setSettings(cameras);
                     setwebcam2(cameras[0]);
                 });
         } catch (e) {
