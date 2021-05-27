@@ -141,6 +141,7 @@ function setwebcam() {
     var options = true;
     if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
         try {
+            var dropdownDiv = document.getElementById("dropdown");
             var cameras = [];
             navigator.mediaDevices.enumerateDevices()
                 .then(function (devices) {
@@ -153,7 +154,13 @@ function setwebcam() {
                                     },
                                     'facingMode': 'environment'
                                 };
-                                cameras.push(options);
+                                options2 = {
+                                    'deviceId': {
+                                        'exact': device.deviceId
+                                    },
+                                    'type':device.label
+                                }
+                                cameras.push(options2);
                             }
 
                         }
@@ -162,6 +169,7 @@ function setwebcam() {
 
                     console.log(cameras)
                     console.log(cameras[0])
+                    dropdownDiv.innerHTML = setSettings(cameras);
                     setwebcam2(cameras[0]);
                 });
         } catch (e) {
@@ -172,6 +180,16 @@ function setwebcam() {
         setwebcam2(options);
     }
 
+}
+
+function setSettings(cameraArray) {
+    var div = "";
+
+    for (let each in cameraArray) {
+        var options = `<option> value = "${cameraArray[each].device.exact}">${cameraArray[each].type}</option>`
+        div+=options;
+    }
+    return div;
 }
 
 function setwebcam2(options) {
